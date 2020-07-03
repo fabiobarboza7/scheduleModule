@@ -1,0 +1,2 @@
+class RecurringAvailability < ApplicationRecord
+end

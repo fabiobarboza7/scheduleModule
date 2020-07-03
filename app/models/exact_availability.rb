@@ -1,0 +1,2 @@
+class ExactAvailability < ApplicationRecord
+end
