@@ -5,10 +5,10 @@ RSpec.describe RecurringAvailability, type: :model do
   recurring_availability = RecurringAvailability.new(
   	doctor_id: SecureRandom.hex(8),
   	weekday: :saturday,
-  	start_time: Time.now,
-  	end_time: Time.now,
-  	start_date: Time.now,
-  	end_date: Time.now
+  	start_time: "2020-07-07T18:58:19.168Z",
+  	end_time: "2020-07-07T18:58:20.168Z",
+  	start_date: Date.today,
+  	end_date: Date.today + 1
 	)
   describe "Model recurring_availabilities" do
   	it "should be valid with valid attributes" do

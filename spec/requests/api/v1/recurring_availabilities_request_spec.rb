@@ -13,10 +13,10 @@ RSpec.describe "Api::V1::RecurringAvailabilities", type: :request do
       post '/api/v1/recurring_availabilities', :params => { :recurring_availability => {  
 																																									      	doctor_id: SecureRandom.hex(8), 
 																																									      	weekday: :saturday,
-																																											    start_time: Time.now,
-																																											    end_time: Time.now,
-																																											    start_date: Time.now,
-																																											    end_date: Time.now 
+																																											    start_time: "2020-07-07T18:58:19.168Z",
+                                                                                          end_time: "2020-07-07T18:58:20.168Z",
+                                                                                          start_date: Date.today,
+                                                                                          end_date: Date.today + 1
 																																											  } 
 																													}
       expect(response).to have_http_status(:created)
@@ -28,10 +28,10 @@ RSpec.describe "Api::V1::RecurringAvailabilities", type: :request do
       recurring_availability = RecurringAvailability.create!(
         doctor_id: SecureRandom.hex(8),
         weekday: :saturday,
-        start_time: Time.now,
-        end_time: Time.now,
-        start_date: Time.now,
-        end_date: Time.now
+        start_time: "2020-07-07T18:58:19.168Z",
+        end_time: "2020-07-07T18:58:20.168Z",
+        start_date: Date.today,
+        end_date: Date.today + 1
       )
       delete "/api/v1/recurring_availabilities/#{recurring_availability.id}"
       expect(response).to have_http_status(:ok)
@@ -39,14 +39,14 @@ RSpec.describe "Api::V1::RecurringAvailabilities", type: :request do
   end
 
   describe "UPDATE /recurring_availabilities" do
-    it "should delete a recurring availability" do
+    it "should update a recurring availability" do
       recurring_availability = RecurringAvailability.create!(
         doctor_id: SecureRandom.hex(8),
         weekday: :saturday,
-        start_time: Time.now,
-        end_time: Time.now,
-        start_date: Time.now,
-        end_date: Time.now
+        start_time: "2020-07-07T18:58:19.168Z",
+        end_time: "2020-07-07T18:58:20.168Z",
+        start_date: Date.today,
+        end_date: Date.today + 1
       )
       put "/api/v1/recurring_availabilities/#{recurring_availability.id}", :params => { :recurring_availability => {  
                                                                                           doctor_id: SecureRandom.hex(8), 
