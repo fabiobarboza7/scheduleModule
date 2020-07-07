@@ -1,5 +1,6 @@
 class Api::V1::RecurringAvailabilitiesController < Api::V1::ApiController
 
+	api :GET, '/api/v1/recurring_availabilities', 'List recurring availabilities'
 	def index
 		recurring_availabilities = RecurringAvailability.all
 
@@ -13,6 +14,7 @@ class Api::V1::RecurringAvailabilitiesController < Api::V1::ApiController
 		end
 	end
 
+	api :POST, '/api/v1/recurring_availabilities', 'Create a recurring availability'
 	def create
 		recurring_availability = RecurringAvailability.new(recurring_params)
 
@@ -23,6 +25,7 @@ class Api::V1::RecurringAvailabilitiesController < Api::V1::ApiController
 		end
 	end
 
+	api :PUT, '/api/v1/recurring_availabilities/:id', 'Update a recurring availability'
 	def update
 		recurring_availability = RecurringAvailability.find(params[:id])
 
@@ -33,6 +36,7 @@ class Api::V1::RecurringAvailabilitiesController < Api::V1::ApiController
 		end
 	end
 
+	api :DELETE, '/api/v1/recurring_availabilities/:id', 'Destroy a recurring availability'
 	def destroy
 		recurring_availability = RecurringAvailability.find(params[:id])
 
