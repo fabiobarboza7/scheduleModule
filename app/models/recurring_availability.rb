@@ -1,10 +1,11 @@
 class RecurringAvailability < ApplicationRecord
+	validate :prevent_update_doctor, on: :update
+
 	validates_presence_of :doctor_id
 	validates_presence_of :weekday
 	validates_presence_of :start_time
 	validates_presence_of	:end_time 
 	validates_presence_of :start_date
-	validates_presence_of :end_date
 
 	WEEK_DAYS = { 
 		sunday: 1,
@@ -23,6 +24,12 @@ class RecurringAvailability < ApplicationRecord
 	validate :validate_today
 
 	private
+
+	def prevent_update_doctor
+		if doctor_id_changed?
+    	errors.add(:doctor_id, "doctor_id cannot be updated") 
+    end
+	end
 
 	def validate_time
 		if !end_time.nil? && !start_time.nil? && end_time <= start_time

@@ -8,7 +8,7 @@ class Api::V1::RecurringAvailabilitiesController < Api::V1::ApiController
 			render json: { 
 				data: recurring_availabilities, 
 				count: recurring_availabilities.count 
-			}
+			}, status: :ok
 		else
 			render json: { data: [], count: 0 }, status: :ok
 		end
@@ -31,6 +31,8 @@ class Api::V1::RecurringAvailabilitiesController < Api::V1::ApiController
 
 		if recurring_availability.update(recurring_params)
 			render json: { data: recurring_availability }, status: :ok
+		elsif recurring_availability.doctor_id_changed?
+			render json: { data: recurring_availability.errors }, status: :forbidden
 		else
 			render json: { data: recurring_availability.errors }, status: :bad_request
 		end

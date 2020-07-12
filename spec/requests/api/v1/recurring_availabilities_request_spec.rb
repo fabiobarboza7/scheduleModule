@@ -15,8 +15,7 @@ RSpec.describe "Api::V1::RecurringAvailabilities", type: :request do
 																																									      	weekday: :saturday,
 																																											    start_time: "2020-07-07T18:58:19.168Z",
                                                                                           end_time: "2020-07-07T18:58:20.168Z",
-                                                                                          start_date: Date.today,
-                                                                                          end_date: Date.today + 1
+                                                                                          start_date: Date.today
 																																											  } 
 																													}
       expect(response).to have_http_status(:created)
@@ -49,11 +48,27 @@ RSpec.describe "Api::V1::RecurringAvailabilities", type: :request do
         end_date: Date.today + 1
       )
       put "/api/v1/recurring_availabilities/#{recurring_availability.id}", :params => { :recurring_availability => {  
-                                                                                          doctor_id: SecureRandom.hex(8), 
-                                                                                          weekday: :monday,
-                                                                                        } 
+                                                                                        weekday: :monday,
+                                                                                      } 
                                                                             }
       expect(response).to have_http_status(:ok)
+    end
+
+    it "should not update a doctor_id" do
+      recurring_availability = RecurringAvailability.create!(
+        doctor_id: SecureRandom.hex(8),
+        weekday: :saturday,
+        start_time: "2020-07-07T18:58:19.168Z",
+        end_time: "2020-07-07T18:58:20.168Z",
+        start_date: Date.today,
+        end_date: Date.today + 1
+      )
+      put "/api/v1/recurring_availabilities/#{recurring_availability.id}", :params => { :recurring_availability => {  
+                                                                                        doctor_id: SecureRandom.hex(8),
+                                                                                        weekday: :monday,
+                                                                                      } 
+                                                                            }
+      expect(response).to have_http_status(:forbidden)
     end
   end
 
