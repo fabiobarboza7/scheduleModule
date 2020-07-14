@@ -15,7 +15,8 @@ RSpec.describe "Api::V1::RecurringAvailabilities", type: :request do
 																																									      	weekday: :saturday,
 																																											    start_time: "2020-07-07T18:58:19.168Z",
                                                                                           end_time: "2020-07-07T18:58:20.168Z",
-                                                                                          start_date: Date.today
+                                                                                          start_date: Date.today,
+                                                                                          end_date: Date.today+1,
 																																											  } 
 																													}
       expect(response).to have_http_status(:created)

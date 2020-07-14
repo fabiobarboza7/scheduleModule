@@ -7,13 +7,18 @@ Rails.application.routes.draw do
   		
       get '/recurring_availabilities', to: "recurring_availabilities#index"		
   		post '/recurring_availabilities', to: "recurring_availabilities#create"		
-  		delete '/recurring_availabilities/:id', to: "recurring_availabilities#destroy"		
   		put '/recurring_availabilities/:id', to: "recurring_availabilities#update"		
+  		delete '/recurring_availabilities/:id', to: "recurring_availabilities#destroy"		
 
       get '/exact_availabilities', to: "exact_availabilities#index"
       post '/exact_availabilities', to: "exact_availabilities#create"
-      delete '/exact_availabilities/:id', to: "exact_availabilities#destroy"    
       put '/exact_availabilities/:id', to: "exact_availabilities#update"    
+      delete '/exact_availabilities/:id', to: "exact_availabilities#destroy"    
+
+      get '/schedules', to: "schedules#index"
+      post '/schedules', to: "schedules#create"
+      put '/schedules/:id', to: "schedules#update"    
+      delete '/schedules/:id', to: "schedules#destroy"    
   	end
   end
 end

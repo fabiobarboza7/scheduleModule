@@ -25,7 +25,7 @@ class Api::V1::ExactAvailabilitiesController < Api::V1::ApiController
 		end
 	end
 
-	api :PUT, '/api/v1/exact_availabilities/:id', 'Update a exact availability'
+	api :PUT, '/api/v1/exact_availabilities/:id', 'Update an exact availability'
 	def update
 		exact_availability = ExactAvailability.find(params[:id])
 

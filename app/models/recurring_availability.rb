@@ -32,19 +32,19 @@ class RecurringAvailability < ApplicationRecord
 	end
 
 	def valid_time
-		if !end_time.nil? && !start_time.nil? && end_time <= start_time
+		if end_time <= start_time
 			errors.add(:end_time, 'must be greater than start time')
 		end
 	end
 
 	def valid_date
-		if !end_date.nil? && !start_date.nil? && end_date <= start_date
+		if end_date <= start_date
 			errors.add(:end_date, 'must be greater than start date')
 		end
 	end
 
 	def valid_today
-		if !start_date.nil? && start_date < Date.today
+		if start_date < Date.today
 			errors.add(:start_date, 'must not be less than today')
 		end
 	end
