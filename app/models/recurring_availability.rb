@@ -19,9 +19,9 @@ class RecurringAvailability < ApplicationRecord
 
 	enum weekday: WEEK_DAYS
 
-	validate :validate_time
-	validate :validate_date
-	validate :validate_today
+	validate :valid_time
+	validate :valid_date
+	validate :valid_today
 
 	private
 
@@ -31,19 +31,19 @@ class RecurringAvailability < ApplicationRecord
     end
 	end
 
-	def validate_time
+	def valid_time
 		if !end_time.nil? && !start_time.nil? && end_time <= start_time
 			errors.add(:end_time, 'must be greater than start time')
 		end
 	end
 
-	def validate_date
+	def valid_date
 		if !end_date.nil? && !start_date.nil? && end_date <= start_date
 			errors.add(:end_date, 'must be greater than start date')
 		end
 	end
 
-	def validate_today
+	def valid_today
 		if !start_date.nil? && start_date < Date.today
 			errors.add(:start_date, 'must not be less than today')
 		end
