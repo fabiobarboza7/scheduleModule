@@ -38,7 +38,7 @@ class RecurringAvailability < ApplicationRecord
 	end
 
 	def valid_date
-		if end_date <= start_date
+		if end_date.present? && end_date <= start_date
 			errors.add(:end_date, 'must be greater than start date')
 		end
 	end
